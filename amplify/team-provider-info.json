@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-theclassroom-dev-211008-authRole",
+            "UnauthRoleArn": "arn:aws:iam::207802189926:role/amplify-theclassroom-dev-211008-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::207802189926:role/amplify-theclassroom-dev-211008-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-theclassroom-dev-211008-deployment",
+            "UnauthRoleName": "amplify-theclassroom-dev-211008-unauthRole",
+            "StackName": "amplify-theclassroom-dev-211008",
+            "StackId": "arn:aws:cloudformation:us-east-1:207802189926:stack/amplify-theclassroom-dev-211008/b5a9b3b0-efdd-11ea-8811-1230a5204572",
+            "AmplifyAppId": "dwigc43gv64ii"
+        },
+        "categories": {
+            "auth": {
+                "theclassroomd3cf7274": {}
+            }
+        }
+    }
+}

@@ -1,0 +1,36 @@
+type User @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  firstName: String
+  lastName: String
+  admin: Boolean
+  lastActive: AWSDateTime
+  createdRooms: [Room] @connection(name: "UserRooms")
+  joinedRooms: [Room]
+  createdAt: AWSDateTime
+}
+
+type Room @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  name: String
+  group: String
+  accessCode: String
+  chats: [Chat] @connection(name: "RoomChats")
+  users: [User]
+  admin: User @connection(name: "UserRooms")
+  moderators: [User]
+  createdAt: AWSDateTime
+}
+
+type Chat @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  room: Room @connection(name: "RoomChats")
+  messages: [Message] @connection(name: "ChatMessages")
+  createdAt: AWSDateTime
+}
+
+type Message @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  user: User @connection
+  chat: Chat @connection(name: "ChatMessages")
+  createdAt: AWSDateTime
+}
