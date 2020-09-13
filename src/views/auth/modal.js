@@ -302,10 +302,13 @@ const AuthModal = () => {
                             .then((resData) => {
                               console.log("resData", resData);
                               setSignInVisible(false);
+                              window.location = "/";
                             })
                             .catch((err) => console.log(err));
                         }
                         setSignInVisible(false);
+                        console.log("LOG IN");
+                        window.location = "/";
                       })
                       .catch((err) => {
                         console.log("ERROR NO USER: ", err);
