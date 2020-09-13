@@ -9,8 +9,8 @@ const { Option } = Select;
 
 const suffix = {
   "mail.mcgill.ca": "mcgill",
-  "mail.utoronto.ca": "uoft",
-  "student.ubc.ca": "ubc",
+  // "mail.utoronto.ca": "uoft",
+  // "student.ubc.ca": "ubc",
   "gmail.com": "other",
 };
 
@@ -40,16 +40,16 @@ const AuthModal = () => {
         setFormData({ school: "mcgill" });
         setEmailSuffix("mail.mcgill.ca");
         return;
-      case "uoft":
-        form.setFieldsValue({ school: "uoft" });
-        setFormData({ school: "uoft" });
-        setEmailSuffix("mail.utoronto.ca");
-        return;
-      case "ubc":
-        form.setFieldsValue({ school: "ubc" });
-        setFormData({ school: "ubc" });
-        setEmailSuffix("student.ubc.ca");
-        return;
+      // case "uoft":
+      //   form.setFieldsValue({ school: "uoft" });
+      //   setFormData({ school: "uoft" });
+      //   setEmailSuffix("mail.utoronto.ca");
+      //   return;
+      // case "ubc":
+      //   form.setFieldsValue({ school: "ubc" });
+      //   setFormData({ school: "ubc" });
+      //   setEmailSuffix("student.ubc.ca");
+      //   return;
       case "other":
         form.setFieldsValue({ school: "other" });
         setFormData({ school: "other" });
@@ -188,8 +188,8 @@ const AuthModal = () => {
                 onChange={onSchoolChange}
               >
                 <Option value="mcgill">mcgill</Option>
-                <Option value="uoft">uoft</Option>
-                <Option value="ubc">ubc</Option>
+                {/* <Option value="uoft">uoft</Option>
+                <Option value="ubc">ubc</Option> */}
                 <Option value="other">other</Option>
               </Select>
             </Form.Item>
