@@ -3,8 +3,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateUser = /* GraphQL */ `
-  subscription OnCreateUser($owner: String!) {
-    onCreateUser(owner: $owner) {
+  subscription OnCreateUser {
+    onCreateUser {
       id
       firstName
       lastName
@@ -18,7 +18,6 @@ export const onCreateUser = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -37,8 +36,9 @@ export const onCreateUser = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         admin {
           id
@@ -47,8 +47,9 @@ export const onCreateUser = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         moderators {
           id
@@ -57,22 +58,23 @@ export const onCreateUser = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
+      school
+      email
       updatedAt
-      owner
     }
   }
 `;
 export const onUpdateUser = /* GraphQL */ `
-  subscription OnUpdateUser($owner: String!) {
-    onUpdateUser(owner: $owner) {
+  subscription OnUpdateUser {
+    onUpdateUser {
       id
       firstName
       lastName
@@ -86,7 +88,6 @@ export const onUpdateUser = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -105,8 +106,9 @@ export const onUpdateUser = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         admin {
           id
@@ -115,8 +117,9 @@ export const onUpdateUser = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         moderators {
           id
@@ -125,22 +128,23 @@ export const onUpdateUser = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
+      school
+      email
       updatedAt
-      owner
     }
   }
 `;
 export const onDeleteUser = /* GraphQL */ `
-  subscription OnDeleteUser($owner: String!) {
-    onDeleteUser(owner: $owner) {
+  subscription OnDeleteUser {
+    onDeleteUser {
       id
       firstName
       lastName
@@ -154,7 +158,6 @@ export const onDeleteUser = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -173,8 +176,9 @@ export const onDeleteUser = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         admin {
           id
@@ -183,8 +187,9 @@ export const onDeleteUser = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         moderators {
           id
@@ -193,22 +198,23 @@ export const onDeleteUser = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
+      school
+      email
       updatedAt
-      owner
     }
   }
 `;
 export const onCreateRoom = /* GraphQL */ `
-  subscription OnCreateRoom($owner: String!) {
-    onCreateRoom(owner: $owner) {
+  subscription OnCreateRoom {
+    onCreateRoom {
       id
       name
       group
@@ -216,9 +222,9 @@ export const onCreateRoom = /* GraphQL */ `
       chats {
         items {
           id
+          name
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -238,11 +244,11 @@ export const onCreateRoom = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       admin {
         id
@@ -260,11 +266,11 @@ export const onCreateRoom = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       moderators {
         id
@@ -282,21 +288,20 @@ export const onCreateRoom = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onUpdateRoom = /* GraphQL */ `
-  subscription OnUpdateRoom($owner: String!) {
-    onUpdateRoom(owner: $owner) {
+  subscription OnUpdateRoom {
+    onUpdateRoom {
       id
       name
       group
@@ -304,9 +309,9 @@ export const onUpdateRoom = /* GraphQL */ `
       chats {
         items {
           id
+          name
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -326,11 +331,11 @@ export const onUpdateRoom = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       admin {
         id
@@ -348,11 +353,11 @@ export const onUpdateRoom = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       moderators {
         id
@@ -370,21 +375,20 @@ export const onUpdateRoom = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onDeleteRoom = /* GraphQL */ `
-  subscription OnDeleteRoom($owner: String!) {
-    onDeleteRoom(owner: $owner) {
+  subscription OnDeleteRoom {
+    onDeleteRoom {
       id
       name
       group
@@ -392,9 +396,9 @@ export const onDeleteRoom = /* GraphQL */ `
       chats {
         items {
           id
+          name
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -414,11 +418,11 @@ export const onDeleteRoom = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       admin {
         id
@@ -436,11 +440,11 @@ export const onDeleteRoom = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       moderators {
         id
@@ -458,21 +462,20 @@ export const onDeleteRoom = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onCreateChat = /* GraphQL */ `
-  subscription OnCreateChat($owner: String!) {
-    onCreateChat(owner: $owner) {
+  subscription OnCreateChat {
+    onCreateChat {
       id
       room {
         id
@@ -489,8 +492,9 @@ export const onCreateChat = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         admin {
           id
@@ -499,8 +503,9 @@ export const onCreateChat = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         moderators {
           id
@@ -509,31 +514,33 @@ export const onCreateChat = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         createdAt
         updatedAt
-        owner
       }
+      name
       messages {
         items {
           id
+          chatID
+          text
           createdAt
+          type
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onUpdateChat = /* GraphQL */ `
-  subscription OnUpdateChat($owner: String!) {
-    onUpdateChat(owner: $owner) {
+  subscription OnUpdateChat {
+    onUpdateChat {
       id
       room {
         id
@@ -550,8 +557,9 @@ export const onUpdateChat = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         admin {
           id
@@ -560,8 +568,9 @@ export const onUpdateChat = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         moderators {
           id
@@ -570,31 +579,33 @@ export const onUpdateChat = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         createdAt
         updatedAt
-        owner
       }
+      name
       messages {
         items {
           id
+          chatID
+          text
           createdAt
+          type
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onDeleteChat = /* GraphQL */ `
-  subscription OnDeleteChat($owner: String!) {
-    onDeleteChat(owner: $owner) {
+  subscription OnDeleteChat {
+    onDeleteChat {
       id
       room {
         id
@@ -611,8 +622,9 @@ export const onDeleteChat = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         admin {
           id
@@ -621,8 +633,9 @@ export const onDeleteChat = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         moderators {
           id
@@ -631,31 +644,33 @@ export const onDeleteChat = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         createdAt
         updatedAt
-        owner
       }
+      name
       messages {
         items {
           id
+          chatID
+          text
           createdAt
+          type
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onCreateMessage = /* GraphQL */ `
-  subscription OnCreateMessage($owner: String!) {
-    onCreateMessage(owner: $owner) {
+  subscription OnCreateMessage {
+    onCreateMessage {
       id
       user {
         id
@@ -673,11 +688,11 @@ export const onCreateMessage = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       chat {
         id
@@ -688,24 +703,25 @@ export const onCreateMessage = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
+        name
         messages {
           nextToken
         }
         createdAt
         updatedAt
-        owner
       }
+      chatID
+      text
       createdAt
+      type
       updatedAt
-      owner
     }
   }
 `;
 export const onUpdateMessage = /* GraphQL */ `
-  subscription OnUpdateMessage($owner: String!) {
-    onUpdateMessage(owner: $owner) {
+  subscription OnUpdateMessage {
+    onUpdateMessage {
       id
       user {
         id
@@ -723,11 +739,11 @@ export const onUpdateMessage = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       chat {
         id
@@ -738,24 +754,25 @@ export const onUpdateMessage = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
+        name
         messages {
           nextToken
         }
         createdAt
         updatedAt
-        owner
       }
+      chatID
+      text
       createdAt
+      type
       updatedAt
-      owner
     }
   }
 `;
 export const onDeleteMessage = /* GraphQL */ `
-  subscription OnDeleteMessage($owner: String!) {
-    onDeleteMessage(owner: $owner) {
+  subscription OnDeleteMessage {
+    onDeleteMessage {
       id
       user {
         id
@@ -773,11 +790,11 @@ export const onDeleteMessage = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       chat {
         id
@@ -788,18 +805,19 @@ export const onDeleteMessage = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
+        name
         messages {
           nextToken
         }
         createdAt
         updatedAt
-        owner
       }
+      chatID
+      text
       createdAt
+      type
       updatedAt
-      owner
     }
   }
 `;

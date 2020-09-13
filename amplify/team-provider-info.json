@@ -1,19 +1,19 @@
 {
     "dev": {
         "awscloudformation": {
-            "AuthRoleName": "amplify-theclassroom-dev-211008-authRole",
-            "UnauthRoleArn": "arn:aws:iam::207802189926:role/amplify-theclassroom-dev-211008-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::207802189926:role/amplify-theclassroom-dev-211008-authRole",
+            "AuthRoleName": "amplify-theclassroomgg-dev-142501-authRole",
+            "UnauthRoleArn": "arn:aws:iam::207802189926:role/amplify-theclassroomgg-dev-142501-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::207802189926:role/amplify-theclassroomgg-dev-142501-authRole",
             "Region": "us-east-1",
-            "DeploymentBucketName": "amplify-theclassroom-dev-211008-deployment",
-            "UnauthRoleName": "amplify-theclassroom-dev-211008-unauthRole",
-            "StackName": "amplify-theclassroom-dev-211008",
-            "StackId": "arn:aws:cloudformation:us-east-1:207802189926:stack/amplify-theclassroom-dev-211008/b5a9b3b0-efdd-11ea-8811-1230a5204572",
-            "AmplifyAppId": "dwigc43gv64ii"
+            "DeploymentBucketName": "amplify-theclassroomgg-dev-142501-deployment",
+            "UnauthRoleName": "amplify-theclassroomgg-dev-142501-unauthRole",
+            "StackName": "amplify-theclassroomgg-dev-142501",
+            "StackId": "arn:aws:cloudformation:us-east-1:207802189926:stack/amplify-theclassroomgg-dev-142501/71070b10-f5ee-11ea-a79e-0a0703eab8ad",
+            "AmplifyAppId": "d3oxdavwd42z1k"
         },
         "categories": {
             "auth": {
-                "theclassroomd3cf7274": {}
+                "theclassroomggba38f28b": {}
             }
         }
     }

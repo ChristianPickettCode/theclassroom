@@ -18,7 +18,6 @@ export const getUser = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -37,8 +36,9 @@ export const getUser = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         admin {
           id
@@ -47,8 +47,9 @@ export const getUser = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         moderators {
           id
@@ -57,16 +58,17 @@ export const getUser = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
+      school
+      email
       updatedAt
-      owner
     }
   }
 `;
@@ -93,11 +95,11 @@ export const listUsers = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       nextToken
     }
@@ -113,9 +115,9 @@ export const getRoom = /* GraphQL */ `
       chats {
         items {
           id
+          name
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -135,11 +137,11 @@ export const getRoom = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       admin {
         id
@@ -157,11 +159,11 @@ export const getRoom = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       moderators {
         id
@@ -179,15 +181,14 @@ export const getRoom = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -213,8 +214,9 @@ export const listRooms = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         admin {
           id
@@ -223,8 +225,9 @@ export const listRooms = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         moderators {
           id
@@ -233,12 +236,12 @@ export const listRooms = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -263,8 +266,9 @@ export const getChat = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         admin {
           id
@@ -273,8 +277,9 @@ export const getChat = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         moderators {
           id
@@ -283,25 +288,27 @@ export const getChat = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         createdAt
         updatedAt
-        owner
       }
+      name
       messages {
         items {
           id
+          chatID
+          text
           createdAt
+          type
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -321,14 +328,13 @@ export const listChats = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
+        name
         messages {
           nextToken
         }
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -354,11 +360,11 @@ export const getMessage = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       chat {
         id
@@ -369,18 +375,19 @@ export const getMessage = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
+        name
         messages {
           nextToken
         }
         createdAt
         updatedAt
-        owner
       }
+      chatID
+      text
       createdAt
+      type
       updatedAt
-      owner
     }
   }
 `;
@@ -400,18 +407,67 @@ export const listMessages = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         chat {
           id
+          name
           createdAt
           updatedAt
-          owner
         }
+        chatID
+        text
         createdAt
+        type
         updatedAt
-        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const messageByDate = /* GraphQL */ `
+  query MessageByDate(
+    $type: String
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelMessageFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    messageByDate(
+      type: $type
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        user {
+          id
+          firstName
+          lastName
+          admin
+          lastActive
+          createdAt
+          school
+          email
+          updatedAt
+        }
+        chat {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        chatID
+        text
+        createdAt
+        type
+        updatedAt
       }
       nextToken
     }

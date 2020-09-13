@@ -21,7 +21,6 @@ export const createUser = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -40,8 +39,9 @@ export const createUser = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         admin {
           id
@@ -50,8 +50,9 @@ export const createUser = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         moderators {
           id
@@ -60,16 +61,17 @@ export const createUser = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
+      school
+      email
       updatedAt
-      owner
     }
   }
 `;
@@ -92,7 +94,6 @@ export const updateUser = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -111,8 +112,9 @@ export const updateUser = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         admin {
           id
@@ -121,8 +123,9 @@ export const updateUser = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         moderators {
           id
@@ -131,16 +134,17 @@ export const updateUser = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
+      school
+      email
       updatedAt
-      owner
     }
   }
 `;
@@ -163,7 +167,6 @@ export const deleteUser = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -182,8 +185,9 @@ export const deleteUser = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         admin {
           id
@@ -192,8 +196,9 @@ export const deleteUser = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         moderators {
           id
@@ -202,16 +207,17 @@ export const deleteUser = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
+      school
+      email
       updatedAt
-      owner
     }
   }
 `;
@@ -228,9 +234,9 @@ export const createRoom = /* GraphQL */ `
       chats {
         items {
           id
+          name
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -250,11 +256,11 @@ export const createRoom = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       admin {
         id
@@ -272,11 +278,11 @@ export const createRoom = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       moderators {
         id
@@ -294,15 +300,14 @@ export const createRoom = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -319,9 +324,9 @@ export const updateRoom = /* GraphQL */ `
       chats {
         items {
           id
+          name
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -341,11 +346,11 @@ export const updateRoom = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       admin {
         id
@@ -363,11 +368,11 @@ export const updateRoom = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       moderators {
         id
@@ -385,15 +390,14 @@ export const updateRoom = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -410,9 +414,9 @@ export const deleteRoom = /* GraphQL */ `
       chats {
         items {
           id
+          name
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -432,11 +436,11 @@ export const deleteRoom = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       admin {
         id
@@ -454,11 +458,11 @@ export const deleteRoom = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       moderators {
         id
@@ -476,15 +480,14 @@ export const deleteRoom = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -510,8 +513,9 @@ export const createChat = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         admin {
           id
@@ -520,8 +524,9 @@ export const createChat = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         moderators {
           id
@@ -530,25 +535,27 @@ export const createChat = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         createdAt
         updatedAt
-        owner
       }
+      name
       messages {
         items {
           id
+          chatID
+          text
           createdAt
+          type
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -574,8 +581,9 @@ export const updateChat = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         admin {
           id
@@ -584,8 +592,9 @@ export const updateChat = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         moderators {
           id
@@ -594,25 +603,27 @@ export const updateChat = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         createdAt
         updatedAt
-        owner
       }
+      name
       messages {
         items {
           id
+          chatID
+          text
           createdAt
+          type
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -638,8 +649,9 @@ export const deleteChat = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         admin {
           id
@@ -648,8 +660,9 @@ export const deleteChat = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         moderators {
           id
@@ -658,25 +671,27 @@ export const deleteChat = /* GraphQL */ `
           admin
           lastActive
           createdAt
+          school
+          email
           updatedAt
-          owner
         }
         createdAt
         updatedAt
-        owner
       }
+      name
       messages {
         items {
           id
+          chatID
+          text
           createdAt
+          type
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -703,11 +718,11 @@ export const createMessage = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       chat {
         id
@@ -718,18 +733,19 @@ export const createMessage = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
+        name
         messages {
           nextToken
         }
         createdAt
         updatedAt
-        owner
       }
+      chatID
+      text
       createdAt
+      type
       updatedAt
-      owner
     }
   }
 `;
@@ -756,11 +772,11 @@ export const updateMessage = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       chat {
         id
@@ -771,18 +787,19 @@ export const updateMessage = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
+        name
         messages {
           nextToken
         }
         createdAt
         updatedAt
-        owner
       }
+      chatID
+      text
       createdAt
+      type
       updatedAt
-      owner
     }
   }
 `;
@@ -809,11 +826,11 @@ export const deleteMessage = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
         createdAt
+        school
+        email
         updatedAt
-        owner
       }
       chat {
         id
@@ -824,18 +841,19 @@ export const deleteMessage = /* GraphQL */ `
           accessCode
           createdAt
           updatedAt
-          owner
         }
+        name
         messages {
           nextToken
         }
         createdAt
         updatedAt
-        owner
       }
+      chatID
+      text
       createdAt
+      type
       updatedAt
-      owner
     }
   }
 `;

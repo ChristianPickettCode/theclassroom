@@ -1,6 +1,6 @@
 {
 	"auth": {
-		"theclassroomd3cf7274": {
+		"theclassroomggba38f28b": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": [],
@@ -8,7 +8,7 @@
 		}
 	},
 	"api": {
-		"theclassroom": {
+		"theclassroomgg": {
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {
@@ -17,7 +17,7 @@
 					"defaultAuthentication": {
 						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
 						"userPoolConfig": {
-							"userPoolId": "auththeclassroomd3cf7274"
+							"userPoolId": "auththeclassroomggba38f28b"
 						}
 					}
 				}

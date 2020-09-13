@@ -1,10 +1,10 @@
 {
-    "AppSyncApiName": "theclassroom",
+    "AppSyncApiName": "theclassroomgg",
     "DynamoDBBillingMode": "PAY_PER_REQUEST",
     "DynamoDBEnableServerSideEncryption": "false",
     "AuthCognitoUserPoolId": {
         "Fn::GetAtt": [
-            "auththeclassroomd3cf7274",
+            "auththeclassroomggba38f28b",
             "Outputs.UserPoolId"
         ]
     }
