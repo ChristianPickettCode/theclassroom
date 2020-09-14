@@ -15,6 +15,9 @@ import Room from "../room/sidebar";
 import Chat from "../chat/sidebar";
 import Message from "../message/messages";
 import AuthModal from "../auth/modal";
+import Profile from "../profile/profile";
+import Search from "../search/search";
+import Home from "../home/home";
 
 const Main = () => {
   const [user, setUser] = useState(null);
@@ -47,6 +50,9 @@ const Main = () => {
         {isAuthenticated === false ? <AuthModal /> : ""}
         <Room />
         <Switch>
+          <Route exact path="/" children={<Home />} />
+          <Route path="/profile" children={<Profile />} />
+          <Route path="/search" children={<Search />} />
           <Route path="/:roomID" children={<Chat />} />
         </Switch>
         <Switch>

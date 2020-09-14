@@ -1,7 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 
 import { Layout, Menu, Modal, Form, Input, Select } from "antd";
-import { PlusOutlined, HomeOutlined } from "@ant-design/icons";
+import {
+  PlusOutlined,
+  HomeOutlined,
+  ArrowRightOutlined,
+  SearchOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 
 import { Auth, API, graphqlOperation } from "aws-amplify";
 import * as mutations from "../../graphql/mutations";
@@ -10,6 +16,8 @@ import * as queries from "../../graphql/queries";
 import UserContext from "../../components/UserContext";
 
 import { Link } from "react-router-dom";
+import SearchModal from "../search/modal";
+import ProfileModal from "../profile/modal";
 
 const { Sider } = Layout;
 
@@ -19,6 +27,8 @@ const Sidebar = (props) => {
   const [form] = Form.useForm();
   const [createRoomModal, setCreateRoomModal] = useState(false);
   const [rooms, setRooms] = useState([]);
+  const [searchModalVisible, setSearchModalVisible] = useState(false);
+  const [profileModalVisible, setProfileModalVisible] = useState(false);
 
   // const [user, setUser] = useState(null);
 
@@ -27,7 +37,6 @@ const Sidebar = (props) => {
   };
 
   const user = useContext(UserContext);
-  console.log(user);
 
   useEffect(() => {
     getRooms()
@@ -55,13 +64,37 @@ const Sidebar = (props) => {
       <Menu theme="light" mode="inline" defaultSelectedKeys={[0]} key>
         <Menu.Item
           key={0}
+          icon={<HomeOutlined />}
+          style={{ marginTop: "16px" }}
+        >
+          <Link to={`/`}>"Home"</Link>
+        </Menu.Item>
+        <Menu.Item
+          key={1}
+          icon={<UserOutlined />}
+          onClick={() => setProfileModalVisible(true)}
+        >
+          {/* <Link to={`/profile`}>"Profile"</Link> */}
+          "Profile"
+        </Menu.Item>
+        <Menu.Item
+          key={2}
+          icon={<SearchOutlined />}
+          onClick={() => setSearchModalVisible(true)}
+        >
+          {/* <Link to={`/search`}>"Search"</Link> */}
+          "Search"
+        </Menu.Item>
+        <Menu.Item
+          key={3}
           icon={<PlusOutlined />}
           onClick={() => setCreateRoomModal(true)}
         >
           "Create Room"
         </Menu.Item>
+
         {rooms.map((room) => (
-          <Menu.Item key={room.id} icon={<HomeOutlined />}>
+          <Menu.Item key={room.id} icon={<ArrowRightOutlined />}>
             <Link to={`/${room.id}`}>{room.name}</Link>
           </Menu.Item>
         ))}
@@ -116,6 +149,14 @@ const Sidebar = (props) => {
           </Form.Item>
         </Form>
       </Modal>
+      <ProfileModal
+        visible={profileModalVisible}
+        setVisible={setProfileModalVisible}
+      />
+      <SearchModal
+        visible={searchModalVisible}
+        setVisible={setSearchModalVisible}
+      />
     </Sider>
   );
 };
