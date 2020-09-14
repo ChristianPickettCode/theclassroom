@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 import { Layout, Menu, Modal, Form, Select, Input } from "antd";
-import { PlusOutlined, HomeOutlined } from "@ant-design/icons";
+import {
+  PlusOutlined,
+  HomeOutlined,
+  ArrowRightOutlined,
+} from "@ant-design/icons";
 
 import { useParams, Link } from "react-router-dom";
 
@@ -57,16 +61,17 @@ const Sidebar = (props) => {
       onCollapse={toggle}
       style={{ overflow: "scroll" }}
     >
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={[0]} key>
+      <Menu theme="dark" mode="inline" key>
+        <Menu.Item key={0}>{room ? room.name : ""}</Menu.Item>
         <Menu.Item
-          key={0}
+          key={1}
           icon={<PlusOutlined />}
           onClick={() => setCreateChatModal(true)}
         >
           "Create Chat"
         </Menu.Item>
         {chats.map((chat) => (
-          <Menu.Item icon={<HomeOutlined />} key={chat.id}>
+          <Menu.Item icon={<ArrowRightOutlined />} key={chat.id}>
             <Link to={`/${roomID}/${chat.id}`}>{chat.name}</Link>
           </Menu.Item>
         ))}
