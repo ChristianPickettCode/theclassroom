@@ -1,14 +1,12 @@
 import React from "react";
-import { Layout, Card, Col, Row, Avatar } from "antd";
+import { Layout, Card, Col, Row } from "antd";
 import {
-  EditOutlined,
   EllipsisOutlined,
-  SettingOutlined,
   CodeOutlined,
   UserAddOutlined,
   EyeOutlined,
 } from "@ant-design/icons";
-const { Header, Sider, Content } = Layout;
+const { Content } = Layout;
 const { Meta } = Card;
 
 const Home = () => {

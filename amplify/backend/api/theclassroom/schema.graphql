@@ -1,6 +1,5 @@
 type User
-@model
-@auth(rules: [{ allow: owner }, { allow: private, operations: [read] }]) {
+@model {
   id: ID!
   firstName: String
   lastName: String
@@ -14,8 +13,7 @@ type User
 }
 
 type Room
-@model
-@auth(rules: [{ allow: owner }, { allow: private, operations: [read] }]) {
+@model {
   id: ID!
   name: String
   group: String
@@ -28,8 +26,7 @@ type Room
 }
 
 type Chat
-@model
-@auth(rules: [{ allow: owner }, { allow: private, operations: [read] }]) {
+@model {
   id: ID!
   room: Room @connection(name: "RoomChats")
   name: String
@@ -39,7 +36,6 @@ type Chat
 
 type Message
 @model
-@auth(rules: [{ allow: owner }, { allow: private, operations: [read] }])
 @key(
   name: "messageByDate"
   fields: ["type", "createdAt"]

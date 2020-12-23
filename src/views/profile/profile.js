@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import { Layout, Image, Form, Input, Button, Row, Space } from "antd";
-import { EyeOutlined } from "@ant-design/icons";
-const { Header, Sider, Content } = Layout;
+import React from "react";
+import { Layout, Image, Form, Input, Button, Row } from "antd";
+const { Content } = Layout;
 
 const Profile = () => {
-  const [visible, setVisible] = useState(false);
   return (
     <Layout>
       <Content

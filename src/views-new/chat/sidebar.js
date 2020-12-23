@@ -11,7 +11,7 @@ import * as queries from "../../graphql/queries";
 
 const { Sider } = Layout;
 
-const Sidebar = () => {
+const Sidebar = (props) => {
   const [form] = Form.useForm();
   const [createChatModal, setCreateChatModal] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
@@ -28,10 +28,10 @@ const Sidebar = () => {
   };
 
   useEffect(() => {
-    console.log(roomID);
+    // console.log(roomID);
     getRoom(roomID)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setRoom(res.data.getRoom);
         setChats(res.data.getRoom.chats.items);
       })
@@ -80,10 +80,10 @@ const Sidebar = () => {
             .validateFields()
             .then((values) => {
               form.resetFields();
-              console.log(values);
+            //   console.log(values);
               createChat(values.name)
                 .then((res) => {
-                  console.log(res);
+                //   console.log(res);
                   setCreateChatModal(false);
                   setChats((prevChat) => [...prevChat, res.data.createChat]);
                 })

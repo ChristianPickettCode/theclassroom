@@ -19,6 +19,7 @@ import Profile from "../profile/profile";
 import Search from "../search/search";
 import Home from "../home/home";
 
+import Bridge from "@esotterik/bridge-library"
 const Main = () => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -46,21 +47,39 @@ const Main = () => {
   }, []);
   return (
     <UserContext.Provider value={user}>
-      <Layout className="main" style={{ position: "absolute" }}>
-        {isAuthenticated === false ? <AuthModal /> : ""}
-        <Room />
-        <Switch>
-          <Route exact path="/" children={<Home />} />
-          <Route path="/profile" children={<Profile />} />
-          <Route path="/search" children={<Search />} />
-          <Route path="/:roomID" children={<Chat />} />
-        </Switch>
-        <Switch>
-          <Route path="/:roomID/:chatID" children={<Message />} />
-        </Switch>
-      </Layout>
+      <Bridge request={{
+        data: ["email", "name"],
+        appName: "theClassroom",
+        appID: "54321"
+        }}>
+          <App />
+      </Bridge>
     </UserContext.Provider>
   );
 };
+
+const App = (props) => {
+
+  return(
+    props.user ?  
+      <Layout className="main" style={{ position: "absolute" }}>
+      {/* {isAuthenticated === false ? <AuthModal /> : ""} */}
+        <Room {...props} />
+        <Switch>
+          <Route exact path="/" children={<Home {...props} />} />
+          <Route path="/profile" children={<Profile {...props} />} />
+          <Route path="/search" children={<Search  {...props} />} />
+          <Route path="/:roomID" children={<Chat {...props} />} />
+        </Switch>
+        <Switch>
+          <Route path="/:roomID/:chatID" children={<Message {...props} />} />
+        </Switch>
+
+      </Layout>
+    
+    : <button onClick={props.login}>login</button>
+  
+  )
+}
 
 export default Main;

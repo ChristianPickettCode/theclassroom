@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Layout, Input, Comment, List, Avatar } from "antd";
 import moment from "moment";
@@ -10,17 +10,14 @@ import * as mutations from "../../graphql/mutations";
 import * as queries from "../../graphql/queries";
 import * as subscriptions from "../../graphql/subscriptions";
 
-import UserContext from "../../components/UserContext";
-
 const { Content } = Layout;
 
-const Messages = () => {
+const Messages = (props) => {
   let { chatID } = useParams();
-  const [chat, setChat] = useState();
+  const [, setChat] = useState();
   const [messages, setMessages] = useState([]);
   const [messageText, setMessageText] = useState("");
 
-  const user = useContext(UserContext);
 
   const getChat = async (id) => {
     return await API.graphql(
@@ -66,7 +63,7 @@ const Messages = () => {
   useEffect(() => {
     getChat(chatID)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setChat(res.data.getChat);
         // setMessages(res.data.getChat.messages.items);
       })
@@ -76,7 +73,7 @@ const Messages = () => {
 
     getMessages()
       .then((res) => {
-        console.log("MESSAGES", res);
+        // console.log("MESSAGES", res);
         setMessages(res.data.messageByDate.items);
       })
       .catch((err) => {
@@ -89,7 +86,7 @@ const Messages = () => {
       graphqlOperation(subscriptions.onCreateMessage)
     ).subscribe({
       next: (event) => {
-        console.log(event);
+        // console.log(event);
         setMessages([...messages, event.value.data.onCreateMessage]);
       },
     });
@@ -100,12 +97,12 @@ const Messages = () => {
   }, [messages]);
 
   const sendMessage = async (text) => {
-    console.log(user.id, chatID, text);
+    // console.log(props.userData.id, chatID, text);
     return await API.graphql(
       graphqlOperation(mutations.createMessage, {
         input: {
           text,
-          messageUserId: user.id,
+          messageUserId: props.userData.id,
           messageChatId: chatID,
           chatID,
           type: "Message",
@@ -120,7 +117,7 @@ const Messages = () => {
 
     sendMessage(data)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setMessageText("");
       })
       .catch((err) => console.log(err));

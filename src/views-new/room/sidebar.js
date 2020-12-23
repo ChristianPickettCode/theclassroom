@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Layout, Menu, Modal, Form, Input, Select } from "antd";
 import {
   PlusOutlined,
   HomeOutlined,
   ArrowRightOutlined,
-  SearchOutlined,
-  UserOutlined,
+//   SearchOutlined,
+//   UserOutlined,
   LogoutOutlined
 } from "@ant-design/icons";
 
@@ -14,54 +14,50 @@ import { API, graphqlOperation } from "aws-amplify";
 import * as mutations from "../../graphql/mutations";
 import * as queries from "../../graphql/queries";
 
-import UserContext from "../../components/UserContext";
-
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import SearchModal from "../search/modal";
 import ProfileModal from "../profile/modal";
 
 const { Sider } = Layout;
 
 const { Option } = Select;
-
 const Sidebar = (props) => {
-  const [form] = Form.useForm();
-  const [createRoomModal, setCreateRoomModal] = useState(false);
-  const [rooms, setRooms] = useState([]);
-  const [searchModalVisible, setSearchModalVisible] = useState(false);
-  const [profileModalVisible, setProfileModalVisible] = useState(false);
+    const [form] = Form.useForm();
+    const [createRoomModal, setCreateRoomModal] = useState(false);
+    const [rooms, setRooms] = useState([]);
+    const [searchModalVisible, setSearchModalVisible] = useState(false);
+    const [profileModalVisible, setProfileModalVisible] = useState(false);
+    const [redirect, setRedirect] = useState();
 
-  // const [user, setUser] = useState(null);
+    // const [user, setUser] = useState(null);
 
-  const getRooms = async () => {
-    return await API.graphql(graphqlOperation(queries.listRooms));
-  };
+    const getRooms = async () => {
+        return await API.graphql(graphqlOperation(queries.listRooms));
+    };
 
-  const user = useContext(UserContext);
+    useEffect(() => {
+        getRooms()
+        .then((res) => {
+            // console.log(res);
+            setRooms(res.data.listRooms.items);
+        })
+        .catch((err) => console.log(err));
+    }, []);
 
-  useEffect(() => {
-    getRooms()
-      .then((res) => {
-        console.log(res);
-        setRooms(res.data.listRooms.items);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    const createRoom = async (name, faculty) => {
+        return await API.graphql(
+        graphqlOperation(mutations.createRoom, {
+            input: {
+            roomAdminId: props.userData.id,
+            group: faculty,
+            name,
+            },
+        })
+        );
+    };
 
-  const createRoom = async (name, faculty) => {
-    return await API.graphql(
-      graphqlOperation(mutations.createRoom, {
-        input: {
-          roomAdminId: user.id,
-          group: faculty,
-          name,
-        },
-      })
-    );
-  };
-
-  return (
-    <Sider theme="light" collapsed={true} style={{ overflow: "scroll" }}>
+    return (
+        <Sider theme="light" collapsed={true} style={{ overflow: "scroll" }}>
       <Menu theme="light" mode="inline" defaultSelectedKeys={[0]} key>
         <Menu.Item
           key={0}
@@ -70,12 +66,11 @@ const Sidebar = (props) => {
         >
           <Link to={`/`}>"Home"</Link>
         </Menu.Item>
-        <Menu.Item
+        {/* <Menu.Item
           key={1}
           icon={<UserOutlined />}
           onClick={() => setProfileModalVisible(true)}
         >
-          {/* <Link to={`/profile`}>"Profile"</Link> */}
           "Profile"
         </Menu.Item>
         <Menu.Item
@@ -83,23 +78,24 @@ const Sidebar = (props) => {
           icon={<SearchOutlined />}
           onClick={() => setSearchModalVisible(true)}
         >
-          {/* <Link to={`/search`}>"Search"</Link> */}
           "Search"
-        </Menu.Item>
+        </Menu.Item> */}
+        
         <Menu.Item
           key={3}
+          icon={<PlusOutlined />}
+          onClick={() => setCreateRoomModal(true)}
+        >
+          "Create Room"
+        </Menu.Item>
+
+        <Menu.Item
+          key={4}
           icon={<LogoutOutlined />}
           onClick={props.logout}
         >
           {/* <Link to={`/search`}>"Search"</Link> */}
           "Logout"
-        </Menu.Item>
-        <Menu.Item
-          key={4}
-          icon={<PlusOutlined />}
-          onClick={() => setCreateRoomModal(true)}
-        >
-          "Create Room"
         </Menu.Item>
 
         {rooms.map((room) => (
@@ -117,12 +113,13 @@ const Sidebar = (props) => {
             .validateFields()
             .then((values) => {
               form.resetFields();
-              console.log(values);
+            //   console.log(values);
               createRoom(values.name, values.faculty)
                 .then((res) => {
-                  console.log(res);
+                //   console.log(res);
                   setCreateRoomModal(false);
                   setRooms((prevRooms) => [...prevRooms, res.data.createRoom]);
+                  setRedirect(res.data.createRoom.id);
                 })
                 .catch((err) => console.log(err));
             })
@@ -158,6 +155,7 @@ const Sidebar = (props) => {
           </Form.Item>
         </Form>
       </Modal>
+      {redirect ? <Redirect to={`/${redirect}`} /> : ""}
       <ProfileModal
         visible={profileModalVisible}
         setVisible={setProfileModalVisible}
@@ -167,7 +165,7 @@ const Sidebar = (props) => {
         setVisible={setSearchModalVisible}
       />
     </Sider>
-  );
-};
+    )
+}
 
-export default Sidebar;
+export default Sidebar
