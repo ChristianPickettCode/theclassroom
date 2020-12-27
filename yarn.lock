@@ -2468,10 +2468,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.7.4.tgz#f14932887422c9056b15a8d222a9074a7dfa2831"
   integrity sha512-fxfMSBMX3tlIbKUdtGKxqB1fyrH6gVrX39Gsv3y8lRYKUqlgDt3UMqQyGnR1bQMa2B8aGnhLZokZgg8vT0Le+A==
 
-"@esotterik/bridge-library@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@esotterik/bridge-library/-/bridge-library-0.0.2.tgz#5287bcdbb1594b3563a7953f0227e92ea1bb47aa"
-  integrity sha512-hOTmQ4faDKXzDiwtjCj/+RT3gptpCqJ9m+nmTmEvklBjLLgn0l2gArf6/1gRjUwycel7lBiNnKh20LjoGh2w2A==
+"@esotterik/bridge-library@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@esotterik/bridge-library/-/bridge-library-0.0.5.tgz#bf54c99771f2b2efdae0841c34f807862b1e2418"
+  integrity sha512-vilOZylD9CSAp7txdXplrkaN8r+DcZQdKIfPWfskt8LGNEXZt+CHeWgnIElHmNjhBoNt+4TQpXP4/LT4f+Pycg==
   dependencies:
     crypto-js "^4.0.0"
     evergreen-ui "^5.1.2"

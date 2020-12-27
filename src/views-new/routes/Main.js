@@ -23,7 +23,7 @@ const Main = () => {
       <Bridge request={{
         data: ["email", "name"],
         appName: "theClassroom",
-        appID: "54321"
+        appID: "6be13202-07fe-4bca-b3b6-d7c43d58c69c"
         }}>
           <App />
       </Bridge>
