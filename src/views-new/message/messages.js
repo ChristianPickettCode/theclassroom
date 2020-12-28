@@ -154,9 +154,9 @@ const Messages = (props) => {
           renderItem={(item) => {
             return (
               <Comment
-                author={item.user.email}
+                author={item.user.firstName}
                 avatar={
-                  <Avatar>{item.user.email.charAt(0).toUpperCase()}</Avatar>
+                  <Avatar>{item.user.firstName.charAt(0).toUpperCase()}</Avatar>
                 }
                 content={item.text}
                 datetime={moment(new Date(item.createdAt)).fromNow()}
