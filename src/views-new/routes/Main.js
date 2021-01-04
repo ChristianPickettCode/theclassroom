@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Layout, Button } from "antd";
+import { Layout, Button, Select } from "antd";
 
 import { Switch, Route } from "react-router-dom";
 
@@ -18,6 +18,9 @@ import Search from "../search/search";
 import Home from "../home/home";
 
 import Atlis from "atlis";
+
+const { Option } = Select;
+
 const Main = () => {
   return (
       <Atlis request={{
@@ -58,7 +61,7 @@ const App = (props) => {
           .then((res) => {
             // console.log(res.data.getUser);
             if (res.data.getUser === null) {
-              console.log("CREATE NEW USER");
+              // console.log("CREATE NEW USER");
               createUser(props.user.userAppID, props.user.email, props.user.name).then(res => {
                 // console.log(res);
                 setUserData(res.data.createUser);
@@ -66,14 +69,14 @@ const App = (props) => {
                 console.log(err);
               })
             } else {
-              console.log("GET USER");
+              // console.log("GET USER");
               setUserData(res.data.getUser);
             }
           })
           .catch((err) => console.log(err));
 
     }
-  }, [props.user])
+  }, [props.user]);
 
   return(
     props.user && userData ?  
@@ -92,8 +95,17 @@ const App = (props) => {
 
       </Layout>
     
-    : <div style={{textAlign:"center"}}> 
-          <Button style={{marginTop:"10%"}} onClick={props.login}>login</Button>
+    : <div style={{textAlign:"center", padding:"5%"}}> 
+          <h2>Welcome to theClassroom an inter and intra school chatroom</h2>
+          <h4>University email address required.</h4>
+          <Button style={{marginTop:"2%"}} onClick={props.login}>Enter</Button>
+          <br />
+          <Select defaultValue="default" style={{ width: 100 , marginTop:"20px", position:"absolute", bottom:"20px", right:"20px"}}>
+            <Option disabled value="default">Schools</Option>
+            <Option value="mcgill">McGill</Option>
+            <Option value="uoft">U of T</Option>
+            <Option value="ubc">UBC</Option>
+          </Select>
       </div>
   
   )
