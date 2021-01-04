@@ -17,16 +17,16 @@ import Profile from "../profile/profile";
 import Search from "../search/search";
 import Home from "../home/home";
 
-import Bridge from "@esotterik/bridge-library"
+import Atlis from "atlis";
 const Main = () => {
   return (
-      <Bridge request={{
+      <Atlis request={{
         data: ["email", "name"],
         appName: "theClassroom",
         appID: "6be13202-07fe-4bca-b3b6-d7c43d58c69c"
         }}>
           <App />
-      </Bridge>
+      </Atlis>
   );
 };
 

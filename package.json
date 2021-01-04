@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@esotterik/bridge-library": "^0.0.6",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -13,6 +12,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-router-dom": "^5.1.5",
     "antd": "^4.9.4",
+    "atlis": "^0.0.9",
     "aws-amplify": "^3.1.1",
     "moment": "^2.27.0",
     "react": "^16.13.1",
