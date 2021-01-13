@@ -6,7 +6,7 @@ import {
   HomeOutlined,
   ArrowRightOutlined,
 //   SearchOutlined,
-//   UserOutlined,
+  UserOutlined,
   LogoutOutlined
 } from "@ant-design/icons";
 
@@ -14,7 +14,7 @@ import { API, graphqlOperation } from "aws-amplify";
 import * as mutations from "../../graphql/mutations";
 import * as queries from "../../graphql/queries";
 
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useLocation } from "react-router-dom";
 import SearchModal from "../search/modal";
 import ProfileModal from "../profile/modal";
 
@@ -28,7 +28,8 @@ const Sidebar = (props) => {
     const [searchModalVisible, setSearchModalVisible] = useState(false);
     const [profileModalVisible, setProfileModalVisible] = useState(false);
     const [redirect, setRedirect] = useState();
-
+    const location = useLocation();
+    
     // const [user, setUser] = useState(null);
 
     const getRooms = async () => {
@@ -39,7 +40,12 @@ const Sidebar = (props) => {
         getRooms()
         .then((res) => {
             // console.log(res);
-            setRooms(res.data.listRooms.items);
+            let r = res.data.listRooms.items;
+            if (props.userData.joinedRooms) {
+              const filteredRooms = r.filter(i => props.userData.joinedRooms.includes(i.id));
+              setRooms(filteredRooms);
+            }
+            
         })
         .catch((err) => console.log(err));
     }, []);
@@ -58,7 +64,7 @@ const Sidebar = (props) => {
 
     return (
         <Sider theme="light" collapsed={true} style={{ overflow: "scroll" }}>
-      <Menu theme="light" mode="inline" defaultSelectedKeys={[0]} key>
+      <Menu theme="light" mode="inline" defaultSelectedKeys={[location.pathname.split("/")[1]]} key>
         <Menu.Item
           key={0}
           icon={<HomeOutlined />}
@@ -72,8 +78,8 @@ const Sidebar = (props) => {
           onClick={() => setProfileModalVisible(true)}
         >
           "Profile"
-        </Menu.Item>
-        <Menu.Item
+        </Menu.Item> */}
+        {/* <Menu.Item
           key={2}
           icon={<SearchOutlined />}
           onClick={() => setSearchModalVisible(true)}
@@ -156,14 +162,16 @@ const Sidebar = (props) => {
         </Form>
       </Modal>
       {redirect ? <Redirect to={`/${redirect}`} /> : ""}
-      <ProfileModal
+      {/* <ProfileModal
         visible={profileModalVisible}
         setVisible={setProfileModalVisible}
+        id={props.userData.id}
+        userData={props.userData}
       />
       <SearchModal
         visible={searchModalVisible}
         setVisible={setSearchModalVisible}
-      />
+      /> */}
     </Sider>
     )
 }

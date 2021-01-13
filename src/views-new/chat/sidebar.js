@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Layout, Menu, Modal, Form, Input } from "antd";
 import { PlusOutlined, ArrowRightOutlined } from "@ant-design/icons";
 
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 
 import { API, graphqlOperation } from "aws-amplify";
 import * as mutations from "../../graphql/mutations";
@@ -18,7 +18,8 @@ const Sidebar = (props) => {
   let { roomID } = useParams();
   const [room, setRoom] = useState();
   const [chats, setChats] = useState([]);
-
+  const location = useLocation();
+  
   const toggle = () => {
     setCollapsed((c) => !c);
   };
@@ -56,10 +57,10 @@ const Sidebar = (props) => {
       onCollapse={toggle}
       style={{ overflow: "scroll" }}
     >
-      <Menu theme="dark" mode="inline" key>
-        <Menu.Item key={0}>{room ? room.name : ""}</Menu.Item>
+      <Menu theme="dark" mode="inline" defaultSelectedKeys={[location.pathname.split("/")[2]]} >
+        <Menu.Item key="RoomTitle">{room ? room.name : ""}</Menu.Item>
         <Menu.Item
-          key={1}
+          key="CreateChat"
           icon={<PlusOutlined />}
           onClick={() => setCreateChatModal(true)}
         >

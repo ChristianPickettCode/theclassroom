@@ -6,10 +6,17 @@ type User
   admin: Boolean
   lastActive: AWSDateTime
   createdRooms: [Room] @connection(name: "UserRooms")
-  joinedRooms: [Room]
+  joinedRooms: [String]
   createdAt: AWSDateTime
   school: String
   email: String
+  startDate: String
+  endDate: String
+  profileImg: String
+  faculty: String
+  degree: String
+  CoursesTermOne: [String]
+  CoursesTermTwo: [String]
 }
 
 type Room
@@ -48,4 +55,9 @@ type Message
   text: String
   createdAt: String!
   type: String!
+}
+
+type Subscription {
+  sendMessage(chatID: String!): Message
+		@aws_subscribe(mutations: ["createMessage"])
 }

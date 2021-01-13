@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Layout, Button, Select } from "antd";
+import { Layout, Button, Select, Spin } from "antd";
 
 import { Switch, Route } from "react-router-dom";
 
@@ -36,22 +36,65 @@ const Main = () => {
 const App = (props) => {
 
   const [userData, setUserData] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedOut, setLoggedOut] = useState(false);
 
   const getUser = async (id) => {
     return await API.graphql(graphqlOperation(queries.getUser, { id }));
   };
 
   const createUser = async (id, email, name) => {
+    const schoolEmail = email.split("@")[1];
+    const school = "";
+    switch (schoolEmail) {
+      case "mail.mcgill.ca":
+        school = "McGill";
+        break;
+      case "student.ubc.ca":
+        school = "UBC";
+        break;
+      case "mail.utoronto.ca":
+        school = "UofT"
+        break;
+      default:
+        school = "undefined";
+        break;
+    }
     return await API.graphql(
       graphqlOperation(mutations.createUser, {
         input: {
           id,
           email,
-          firstName: name
+          firstName: name,
+          school
         },
       })
     );
   };
+
+  const setSchool = async(id, email) => {
+    const schoolEmail = email.split("@")[1];
+    let school = "";
+    switch (schoolEmail) {
+      case "mail.mcgill.ca":
+        school = "McGill";
+        break;
+      case "student.ubc.ca":
+        school = "UBC";
+        break;
+      case "mail.utoronto.ca":
+        school = "UofT"
+        break;
+      default:
+        school = "undefined";
+        break;
+    }
+
+    await API
+      .graphql(graphqlOperation( mutations.updateUser, { input : { id, school } } ))
+      .then(res => window.location = "/")
+      .catch(err => console.log(err))
+  }
 
   useEffect(() => {
     
@@ -71,21 +114,28 @@ const App = (props) => {
             } else {
               // console.log("GET USER");
               setUserData(res.data.getUser);
+              // console.log(res.data.getUser)
+              if (res.data.getUser.school === null || res.data.getUser.school === undefined) {
+                console.log(res.data.getUser.id, res.data.getUser.email)
+                setSchool(res.data.getUser.id, res.data.getUser.email)
+              }
             }
+            setLoggedIn(true);
           })
           .catch((err) => console.log(err));
-
+    } else {
+      setLoggedOut(true);
     }
   }, [props.user]);
 
   return(
-    props.user && userData ?  
+    props.user && userData && loggedIn ?  
       <Layout className="main" style={{ position: "absolute" }}>
       {/* {isAuthenticated === false ? <AuthModal /> : ""} */}
         <Room {...props} userData={userData} />
         <Switch>
-          <Route exact path="/" children={<Home {...props} userData={userData} />} />
-          <Route path="/profile" children={<Profile {...props} userData={userData} />} />
+          <Route exact path="/" children={<Home {...props} userData={userData} setUserData={setUserData} />} />
+          {/* <Route path="/profile" children={<Profile {...props} userData={userData} />} /> */}
           <Route path="/search" children={<Search  {...props} userData={userData} />} />
           <Route path="/:roomID" children={<Chat {...props} userData={userData} />} />
         </Switch>
@@ -95,7 +145,7 @@ const App = (props) => {
 
       </Layout>
     
-    : <div style={{textAlign:"center", padding:"5%"}}> 
+    : !props.user && !userData && loggedOut ? <div style={{textAlign:"center", padding:"5%"}}> 
           <h2>Welcome to theClassroom an inter and intra school chatroom</h2>
           <h4>University email address required.</h4>
           <Button style={{marginTop:"2%"}} onClick={props.login}>Enter</Button>
@@ -106,7 +156,7 @@ const App = (props) => {
             <Option value="uoft">U of T</Option>
             <Option value="ubc">UBC</Option>
           </Select>
-      </div>
+      </div> : <div style={{textAlign:"center"}}> <Spin style={{marginTop:"20%"}} /> </div>
   
   )
 }

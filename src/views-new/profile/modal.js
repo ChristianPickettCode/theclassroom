@@ -1,17 +1,35 @@
-import React from "react";
-import { Modal, List, Image, Row, Layout, Col, Divider } from "antd";
+import React, { useEffect } from "react";
+import { Modal, List, Image, Row, Layout, Col, Divider, Button } from "antd";
 const { Content } = Layout;
 
-const ProfileModal = ({ visible, setVisible }) => {
+const ProfileModal = ({ visible, setVisible, id, userData }) => {
+
+  useEffect(() => {
+    if (userData) {
+      console.log(id);
+      console.log(userData)
+    }
+    
+    return () => {
+      
+    }
+  }, [id, userData]);
+
   return (
     <Modal
       visible={visible}
-      title="My Profile"
+      title="Profile"
       footer={null}
       onCancel={() => setVisible(false)}
     >
       <Layout>
         <Content style={{ backgroundColor: "white" }}>
+        <Row justify="space-between">
+          <Col></Col>
+          <Col style={{marginRight:"20px"}}>
+            <Button>Edit</Button>
+          </Col>
+        </Row>
           <Row>
             <Col>
               <Row justify="center">
@@ -22,11 +40,12 @@ const ProfileModal = ({ visible, setVisible }) => {
               </Row>
             </Col>
             <Col style={{ marginLeft: "24px" }}>
-              <h2>Chris Pickett</h2>
-              <h3>McGill University</h3>
-              <h3>Computer Science</h3>
-              <h3>2016 - 2021</h3>
-              <h4>christian.pickett@mail.mcgill.ca</h4>
+              <h2>Name</h2>
+              <h3>School</h3>
+              <h3>Faculty</h3>
+              <h4>Degree</h4>
+              <h5>Start - End</h5>
+              <h4>Email</h4>
             </Col>
           </Row>
           <Divider>Courses</Divider>

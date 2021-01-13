@@ -23,53 +23,17 @@ export const createUser = /* GraphQL */ `
         }
         nextToken
       }
-      joinedRooms {
-        id
-        name
-        group
-        accessCode
-        chats {
-          nextToken
-        }
-        users {
-          id
-          firstName
-          lastName
-          admin
-          lastActive
-          createdAt
-          school
-          email
-          updatedAt
-        }
-        admin {
-          id
-          firstName
-          lastName
-          admin
-          lastActive
-          createdAt
-          school
-          email
-          updatedAt
-        }
-        moderators {
-          id
-          firstName
-          lastName
-          admin
-          lastActive
-          createdAt
-          school
-          email
-          updatedAt
-        }
-        createdAt
-        updatedAt
-      }
+      joinedRooms
       createdAt
       school
       email
+      startDate
+      endDate
+      profileImg
+      faculty
+      degree
+      CoursesTermOne
+      CoursesTermTwo
       updatedAt
     }
   }
@@ -96,53 +60,17 @@ export const updateUser = /* GraphQL */ `
         }
         nextToken
       }
-      joinedRooms {
-        id
-        name
-        group
-        accessCode
-        chats {
-          nextToken
-        }
-        users {
-          id
-          firstName
-          lastName
-          admin
-          lastActive
-          createdAt
-          school
-          email
-          updatedAt
-        }
-        admin {
-          id
-          firstName
-          lastName
-          admin
-          lastActive
-          createdAt
-          school
-          email
-          updatedAt
-        }
-        moderators {
-          id
-          firstName
-          lastName
-          admin
-          lastActive
-          createdAt
-          school
-          email
-          updatedAt
-        }
-        createdAt
-        updatedAt
-      }
+      joinedRooms
       createdAt
       school
       email
+      startDate
+      endDate
+      profileImg
+      faculty
+      degree
+      CoursesTermOne
+      CoursesTermTwo
       updatedAt
     }
   }
@@ -169,53 +97,17 @@ export const deleteUser = /* GraphQL */ `
         }
         nextToken
       }
-      joinedRooms {
-        id
-        name
-        group
-        accessCode
-        chats {
-          nextToken
-        }
-        users {
-          id
-          firstName
-          lastName
-          admin
-          lastActive
-          createdAt
-          school
-          email
-          updatedAt
-        }
-        admin {
-          id
-          firstName
-          lastName
-          admin
-          lastActive
-          createdAt
-          school
-          email
-          updatedAt
-        }
-        moderators {
-          id
-          firstName
-          lastName
-          admin
-          lastActive
-          createdAt
-          school
-          email
-          updatedAt
-        }
-        createdAt
-        updatedAt
-      }
+      joinedRooms
       createdAt
       school
       email
+      startDate
+      endDate
+      profileImg
+      faculty
+      degree
+      CoursesTermOne
+      CoursesTermTwo
       updatedAt
     }
   }
@@ -248,17 +140,17 @@ export const createRoom = /* GraphQL */ `
         createdRooms {
           nextToken
         }
-        joinedRooms {
-          id
-          name
-          group
-          accessCode
-          createdAt
-          updatedAt
-        }
+        joinedRooms
         createdAt
         school
         email
+        startDate
+        endDate
+        profileImg
+        faculty
+        degree
+        CoursesTermOne
+        CoursesTermTwo
         updatedAt
       }
       admin {
@@ -270,17 +162,17 @@ export const createRoom = /* GraphQL */ `
         createdRooms {
           nextToken
         }
-        joinedRooms {
-          id
-          name
-          group
-          accessCode
-          createdAt
-          updatedAt
-        }
+        joinedRooms
         createdAt
         school
         email
+        startDate
+        endDate
+        profileImg
+        faculty
+        degree
+        CoursesTermOne
+        CoursesTermTwo
         updatedAt
       }
       moderators {
@@ -292,17 +184,17 @@ export const createRoom = /* GraphQL */ `
         createdRooms {
           nextToken
         }
-        joinedRooms {
-          id
-          name
-          group
-          accessCode
-          createdAt
-          updatedAt
-        }
+        joinedRooms
         createdAt
         school
         email
+        startDate
+        endDate
+        profileImg
+        faculty
+        degree
+        CoursesTermOne
+        CoursesTermTwo
         updatedAt
       }
       createdAt
@@ -338,17 +230,17 @@ export const updateRoom = /* GraphQL */ `
         createdRooms {
           nextToken
         }
-        joinedRooms {
-          id
-          name
-          group
-          accessCode
-          createdAt
-          updatedAt
-        }
+        joinedRooms
         createdAt
         school
         email
+        startDate
+        endDate
+        profileImg
+        faculty
+        degree
+        CoursesTermOne
+        CoursesTermTwo
         updatedAt
       }
       admin {
@@ -360,17 +252,17 @@ export const updateRoom = /* GraphQL */ `
         createdRooms {
           nextToken
         }
-        joinedRooms {
-          id
-          name
-          group
-          accessCode
-          createdAt
-          updatedAt
-        }
+        joinedRooms
         createdAt
         school
         email
+        startDate
+        endDate
+        profileImg
+        faculty
+        degree
+        CoursesTermOne
+        CoursesTermTwo
         updatedAt
       }
       moderators {
@@ -382,17 +274,17 @@ export const updateRoom = /* GraphQL */ `
         createdRooms {
           nextToken
         }
-        joinedRooms {
-          id
-          name
-          group
-          accessCode
-          createdAt
-          updatedAt
-        }
+        joinedRooms
         createdAt
         school
         email
+        startDate
+        endDate
+        profileImg
+        faculty
+        degree
+        CoursesTermOne
+        CoursesTermTwo
         updatedAt
       }
       createdAt
@@ -428,17 +320,17 @@ export const deleteRoom = /* GraphQL */ `
         createdRooms {
           nextToken
         }
-        joinedRooms {
-          id
-          name
-          group
-          accessCode
-          createdAt
-          updatedAt
-        }
+        joinedRooms
         createdAt
         school
         email
+        startDate
+        endDate
+        profileImg
+        faculty
+        degree
+        CoursesTermOne
+        CoursesTermTwo
         updatedAt
       }
       admin {
@@ -450,17 +342,17 @@ export const deleteRoom = /* GraphQL */ `
         createdRooms {
           nextToken
         }
-        joinedRooms {
-          id
-          name
-          group
-          accessCode
-          createdAt
-          updatedAt
-        }
+        joinedRooms
         createdAt
         school
         email
+        startDate
+        endDate
+        profileImg
+        faculty
+        degree
+        CoursesTermOne
+        CoursesTermTwo
         updatedAt
       }
       moderators {
@@ -472,17 +364,17 @@ export const deleteRoom = /* GraphQL */ `
         createdRooms {
           nextToken
         }
-        joinedRooms {
-          id
-          name
-          group
-          accessCode
-          createdAt
-          updatedAt
-        }
+        joinedRooms
         createdAt
         school
         email
+        startDate
+        endDate
+        profileImg
+        faculty
+        degree
+        CoursesTermOne
+        CoursesTermTwo
         updatedAt
       }
       createdAt
@@ -511,9 +403,17 @@ export const createChat = /* GraphQL */ `
           lastName
           admin
           lastActive
+          joinedRooms
           createdAt
           school
           email
+          startDate
+          endDate
+          profileImg
+          faculty
+          degree
+          CoursesTermOne
+          CoursesTermTwo
           updatedAt
         }
         admin {
@@ -522,9 +422,17 @@ export const createChat = /* GraphQL */ `
           lastName
           admin
           lastActive
+          joinedRooms
           createdAt
           school
           email
+          startDate
+          endDate
+          profileImg
+          faculty
+          degree
+          CoursesTermOne
+          CoursesTermTwo
           updatedAt
         }
         moderators {
@@ -533,9 +441,17 @@ export const createChat = /* GraphQL */ `
           lastName
           admin
           lastActive
+          joinedRooms
           createdAt
           school
           email
+          startDate
+          endDate
+          profileImg
+          faculty
+          degree
+          CoursesTermOne
+          CoursesTermTwo
           updatedAt
         }
         createdAt
@@ -579,9 +495,17 @@ export const updateChat = /* GraphQL */ `
           lastName
           admin
           lastActive
+          joinedRooms
           createdAt
           school
           email
+          startDate
+          endDate
+          profileImg
+          faculty
+          degree
+          CoursesTermOne
+          CoursesTermTwo
           updatedAt
         }
         admin {
@@ -590,9 +514,17 @@ export const updateChat = /* GraphQL */ `
           lastName
           admin
           lastActive
+          joinedRooms
           createdAt
           school
           email
+          startDate
+          endDate
+          profileImg
+          faculty
+          degree
+          CoursesTermOne
+          CoursesTermTwo
           updatedAt
         }
         moderators {
@@ -601,9 +533,17 @@ export const updateChat = /* GraphQL */ `
           lastName
           admin
           lastActive
+          joinedRooms
           createdAt
           school
           email
+          startDate
+          endDate
+          profileImg
+          faculty
+          degree
+          CoursesTermOne
+          CoursesTermTwo
           updatedAt
         }
         createdAt
@@ -647,9 +587,17 @@ export const deleteChat = /* GraphQL */ `
           lastName
           admin
           lastActive
+          joinedRooms
           createdAt
           school
           email
+          startDate
+          endDate
+          profileImg
+          faculty
+          degree
+          CoursesTermOne
+          CoursesTermTwo
           updatedAt
         }
         admin {
@@ -658,9 +606,17 @@ export const deleteChat = /* GraphQL */ `
           lastName
           admin
           lastActive
+          joinedRooms
           createdAt
           school
           email
+          startDate
+          endDate
+          profileImg
+          faculty
+          degree
+          CoursesTermOne
+          CoursesTermTwo
           updatedAt
         }
         moderators {
@@ -669,9 +625,17 @@ export const deleteChat = /* GraphQL */ `
           lastName
           admin
           lastActive
+          joinedRooms
           createdAt
           school
           email
+          startDate
+          endDate
+          profileImg
+          faculty
+          degree
+          CoursesTermOne
+          CoursesTermTwo
           updatedAt
         }
         createdAt
@@ -710,17 +674,17 @@ export const createMessage = /* GraphQL */ `
         createdRooms {
           nextToken
         }
-        joinedRooms {
-          id
-          name
-          group
-          accessCode
-          createdAt
-          updatedAt
-        }
+        joinedRooms
         createdAt
         school
         email
+        startDate
+        endDate
+        profileImg
+        faculty
+        degree
+        CoursesTermOne
+        CoursesTermTwo
         updatedAt
       }
       chat {
@@ -764,17 +728,17 @@ export const updateMessage = /* GraphQL */ `
         createdRooms {
           nextToken
         }
-        joinedRooms {
-          id
-          name
-          group
-          accessCode
-          createdAt
-          updatedAt
-        }
+        joinedRooms
         createdAt
         school
         email
+        startDate
+        endDate
+        profileImg
+        faculty
+        degree
+        CoursesTermOne
+        CoursesTermTwo
         updatedAt
       }
       chat {
@@ -818,17 +782,17 @@ export const deleteMessage = /* GraphQL */ `
         createdRooms {
           nextToken
         }
-        joinedRooms {
-          id
-          name
-          group
-          accessCode
-          createdAt
-          updatedAt
-        }
+        joinedRooms
         createdAt
         school
         email
+        startDate
+        endDate
+        profileImg
+        faculty
+        degree
+        CoursesTermOne
+        CoursesTermTwo
         updatedAt
       }
       chat {

@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 
-import { Layout, Input, Comment, List, Avatar } from "antd";
+import { Layout, Input, Comment, List, Avatar, message , Row, Col, Dropdown, Menu, Button} from "antd";
 import moment from "moment";
 
 import { useParams } from "react-router-dom";
+
+import {
+  SendOutlined,
+  SmallDashOutlined,
+  SettingOutlined
+} from '@ant-design/icons';
 
 import { API, graphqlOperation } from "aws-amplify";
 import * as mutations from "../../graphql/mutations";
@@ -12,12 +18,13 @@ import * as subscriptions from "../../graphql/subscriptions";
 
 const { Content } = Layout;
 
+const { Search } = Input;
+
 const Messages = (props) => {
   let { chatID } = useParams();
-  const [, setChat] = useState();
+  const [chat, setChat] = useState();
   const [messages, setMessages] = useState([]);
   const [messageText, setMessageText] = useState("");
-
 
   const getChat = async (id) => {
     return await API.graphql(
@@ -83,11 +90,10 @@ const Messages = (props) => {
 
   useEffect(() => {
     const subscription = API.graphql(
-      graphqlOperation(subscriptions.onCreateMessage)
+      graphqlOperation(subscriptions.sendMessage, { chatID })
     ).subscribe({
       next: (event) => {
-        // console.log(event);
-        setMessages([...messages, event.value.data.onCreateMessage]);
+        setMessages([...messages, event.value.data.sendMessage]);
       },
     });
 
@@ -112,8 +118,9 @@ const Messages = (props) => {
     );
   };
 
-  const createMessage = () => {
-    const data = messageText;
+  const createMessage = (val) => {
+    // const data = messageText;
+    const data = val;
 
     sendMessage(data)
       .then((res) => {
@@ -122,6 +129,19 @@ const Messages = (props) => {
       })
       .catch((err) => console.log(err));
   };
+
+
+  const deleteMsg = async(item) => {
+    await API
+      .graphql(graphqlOperation(mutations.deleteMessage, {input : {id: item.id}}))
+      .then(res => {
+        setMessages( prev => prev.filter(i => i.id !== res.data.deleteMessage.id));
+      })
+      .catch(err => {
+        console.log(err);
+        message.error("Could not delete message");
+      })
+  }
 
   return (
     <Layout className="site-layout">
@@ -140,6 +160,21 @@ const Messages = (props) => {
           </Popover>
         </Row> */}
 
+        {/* { chat && chat.room.admin.id === props.user.userAppID ? 
+        <Dropdown overlay={
+          <Menu>
+              <Menu.Item>
+                <span style={{color:"red"}} onClick={() => console.log("item")}>Delete</span>
+              </Menu.Item>
+          </Menu>
+        }>
+          <SettingOutlined style={{position: "absolute", right:"40px", top:"15px", fontSize:"16px"}} onClick={() => console.log("working")} />
+        </Dropdown>
+        
+        : ""} */}
+        
+        
+
         <List
           className="comment-list"
           itemLayout="horizontal"
@@ -154,22 +189,52 @@ const Messages = (props) => {
           renderItem={(item) => {
             return (
               <Comment
-                author={item.user.firstName}
-                avatar={
-                  <Avatar>{item.user.firstName.charAt(0).toUpperCase()}</Avatar>
+                author={item.user.school ? `${item.user.school} / ${item.user.firstName}` : `New / ${item.user.firstName}`}
+                // avatar={
+                //   <Avatar>{item.user.firstName.charAt(0).toUpperCase()}</Avatar>
+                // }
+                content={
+                  <div>
+                    <Row justify="space-between">
+                      <Col span="23">
+                      {item.text}
+                      </Col>
+                      {/* {item.user.id === props.user.userAppID ? 
+                        <Col span="1">
+                          <Dropdown overlay={
+                            <Menu>
+                              
+                                <Menu.Item>
+                                  <span style={{color:"red"}} onClick={() => deleteMsg(item)}>Delete</span>
+                                </Menu.Item>
+                            </Menu>
+                          }>
+                            <SmallDashOutlined  />
+                          </Dropdown>
+                        </Col>
+                      : "" } */}
+                    </Row>
+                  </div>
                 }
-                content={item.text}
                 datetime={moment(new Date(item.createdAt)).fromNow()}
+                // actions={ item.user.id === props.user.userAppID ? [<span style={{color:"red"}} onClick={() => deleteMsg(item)}>Delete</span>] : [] }
               />
             );
           }}
         />
-        <Input
+        {/* <Input
           style={{ marginTop: "auto", borderColor: "#40a9ff" }}
           onChange={(e) => setMessageText(e.target.value)}
           value={messageText}
           onPressEnter={() => createMessage()}
-        />
+        /> */}
+        <Search 
+          style={{ marginTop: "auto", borderColor: "#40a9ff" }} 
+          enterButton={<SendOutlined />}
+          onChange={(e) => setMessageText(e.target.value)}
+          value={messageText}
+          onSearch={createMessage}
+          />
       </Content>
     </Layout>
   );

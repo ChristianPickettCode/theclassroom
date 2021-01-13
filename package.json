@@ -17,8 +17,10 @@
     "moment": "^2.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-infinite-scroller": "^1.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-visibility-sensor": "^5.1.1",
     "typescript": "~3.7.2"
   },
   "scripts": {

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Card, Col, Row } from "antd";
+import { Layout, Card, Col, Row, message } from "antd";
 import moment from "moment";
 import { Link } from "react-router-dom";
 
 import {
-  EllipsisOutlined,
+  StarOutlined,
   CodeOutlined,
 //   UserAddOutlined,
   EyeOutlined,
@@ -12,6 +12,7 @@ import {
 
 import { API, graphqlOperation } from "aws-amplify";
 import * as queries from "../../graphql/queries";
+import * as mutations from "../../graphql/mutations";
 
 const { Content } = Layout;
 const { Meta } = Card;
@@ -35,6 +36,59 @@ const Home = (props) => {
         .catch((err) => console.log(err));
     }, []);
 
+    const updateUser = async (userID, joinedRooms) => {
+      return await API.graphql(graphqlOperation(mutations.updateUser, { input : { id : userID, joinedRooms } }));
+    }
+
+    const addToJoinedRooms = (id) => {
+      
+      let updatedJoinedRooms = [];
+      if (props.userData.joinedRooms) {
+        updatedJoinedRooms = [id, ...props.userData.joinedRooms];
+      } else {
+        updatedJoinedRooms = [id];
+      }
+
+      if (props.userData.joinedRooms && !props.userData.joinedRooms.includes(id)) {
+        updateUser(props.userData.id, updatedJoinedRooms)
+          .then(res => {
+            console.log(res);
+            props.setUserData(res.data.updateUser);
+            // window.location = "/";
+            message.success("Added room to favorites...refresh to see on sidebar");
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      } else if (!props.userData.joinedRooms) {
+        updateUser(props.userData.id, updatedJoinedRooms)
+          .then(res => {
+            console.log(res);
+            props.setUserData(res.data.updateUser);
+            // window.location = "/";
+            message.success("Added room to favorites...refresh to see on sidebar");
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      } else {
+        updatedJoinedRooms = updatedJoinedRooms.filter(i => i !== id);
+        updateUser(props.userData.id, updatedJoinedRooms)
+          .then(res => {
+            console.log(res);
+            props.setUserData(res.data.updateUser);
+            // window.location = "/";
+            message.success("Removed room from favorites...refresh to see on sidebar");
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      }
+
+      
+      
+    }
+
   return (
     <Layout>
       <Content
@@ -57,7 +111,7 @@ const Home = (props) => {
                 actions={[
                     // <UserAddOutlined key="setting" />,
                     <Link to={`/${room.id}`}><EyeOutlined key="edit" /></Link>,
-                    <EllipsisOutlined key="ellipsis" />,
+                    <StarOutlined key="star" onClick={() => addToJoinedRooms(room.id)}/>,
                 ]}
                 >
                 <Meta
