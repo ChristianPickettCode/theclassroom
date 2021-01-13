@@ -167,8 +167,8 @@ const Sidebar = (props) => {
         setVisible={setProfileModalVisible}
         id={props.userData.id}
         userData={props.userData}
-      />
-      <SearchModal
+      /> */}
+      {/* <SearchModal
         visible={searchModalVisible}
         setVisible={setSearchModalVisible}
       /> */}

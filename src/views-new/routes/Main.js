@@ -134,10 +134,10 @@ const App = (props) => {
       {/* {isAuthenticated === false ? <AuthModal /> : ""} */}
         <Room {...props} userData={userData} />
         <Switch>
-          <Route exact path="/" children={<Home {...props} userData={userData} setUserData={setUserData} />} />
           {/* <Route path="/profile" children={<Profile {...props} userData={userData} />} /> */}
-          <Route path="/search" children={<Search  {...props} userData={userData} />} />
+          {/* <Route path="/search" children={<Search  {...props} userData={userData} />} /> */}
           <Route path="/:roomID" children={<Chat {...props} userData={userData} />} />
+          <Route exact path="/" children={<Home {...props} userData={userData} setUserData={setUserData} />} />
         </Switch>
         <Switch>
           <Route path="/:roomID/:chatID" children={<Message {...props} userData={userData} />} />
