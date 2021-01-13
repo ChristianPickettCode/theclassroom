@@ -153,9 +153,12 @@ const App = (props) => {
           <Select defaultValue="default" style={{ width: 100 , marginTop:"20px", position:"absolute", bottom:"20px", right:"20px"}}>
             <Option disabled value="default">Schools</Option>
             <Option value="mcgill">McGill</Option>
-            <Option value="uoft">U of T</Option>
+            <Option value="uoft">U of sT</Option>
             <Option value="ubc">UBC</Option>
           </Select>
+          <div style={{ width: 100 , marginTop:"20px", position:"absolute", bottom:"10px", left:"20px"}}>
+            <p><b><a href="https://twitter.com/esotterik" target="blank">@esotterik</a></b></p>
+          </div>
       </div> : <div style={{textAlign:"center"}}> <Spin style={{marginTop:"20%"}} /> </div>
   
   )
