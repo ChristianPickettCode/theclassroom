@@ -1,6 +1,6 @@
 ## theclassroom
 
-This is an inter and intra school chatroom for university students.
+an inter and intra school chatroom for university students.
 
 
 <div style="display:flex;">
